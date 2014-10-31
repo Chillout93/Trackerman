@@ -8,11 +8,12 @@ gem 'jquery-rails',         '3.1.2'
 gem 'turbolinks',           '2.3.0'
 gem 'jbuilder',             '2.1.3'
 gem 'rails-html-sanitizer', '1.0.1'
-gem 'sdoc',                 '0.4.0', group: :doc
+gem 'sdoc',                 '0.4.0'   , group: :doc
+gem 'tzinfo-data',          '1.2014.8', platforms: [:mingw, :mswin]
+gem 'bootstrap-sass'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
-  gem 'web-console', '2.0.0.beta3'
   gem 'spring',      '1.1.3'
 end
 
