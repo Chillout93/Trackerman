@@ -11,10 +11,10 @@ gem 'rails-html-sanitizer', '1.0.1'
 gem 'sdoc',                 '0.4.0'   , group: :doc
 gem 'tzinfo-data',          '1.2014.8', platforms: [:mingw, :mswin]
 gem 'bootstrap-sass'
+gem 'bcrypt',                '3.1.7'
 
 group :development, :test do
   gem 'sqlite3',     '1.3.9'
-  gem 'spring',      '1.1.3'
 end
 
 group :production do
