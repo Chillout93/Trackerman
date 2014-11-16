@@ -5,4 +5,8 @@ nick:
   email: nickspicer93@gmail.com
   password_digest: <%= User.digest('password') %>
 
+pikachu:
+  name: pikachu
+  email: pikachu@gmail.com
+  password_digest: <%= User.digest('password') %>
 
