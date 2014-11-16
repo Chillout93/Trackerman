@@ -7,14 +7,19 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post users_path, user: { name:"", email:"user@invalid", password:"foo", password_confirmation:"bar" }
     end
     assert_template 'users/new'
+    assert_select 'div.alert-danger'
   end
 
   test "valid signup" do
     get signup_path
-    assert_difference 'User.count' do
-      post_via_redirect users_path, user: { name:"nick", email:"test@gmail.com", password:"password", password_oonfirmation:"password" }
+    assert_difference 'User.count', 1 do
+      post_via_redirect users_path, user: { name: "Nick Spicer", 
+                                            email:"user@valid.com", 
+                                            password:"foo", 
+                                            password_confirmation:"foo" }
     end
     assert_template 'users/show'
-    assert_select 'class="alert alert-success"'
+    assert_not flash[:danger]
+    assert is_logged_in?
   end
 end

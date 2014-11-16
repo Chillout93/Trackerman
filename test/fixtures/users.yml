@@ -1,9 +1,8 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
+nick:
   name: Nick Spicer
   email: nickspicer93@gmail.com
+  password_digest: <%= User.digest('password') %>
 
-two:
-  name: Bob Dylan
-  email: bobdylan@gmail.com
+
