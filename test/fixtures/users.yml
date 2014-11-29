@@ -4,9 +4,22 @@ nick:
   name: Nick Spicer
   email: nickspicer93@gmail.com
   password_digest: <%= User.digest('password') %>
+  admin: true
 
 pikachu:
   name: pikachu
   email: pikachu@gmail.com
   password_digest: <%= User.digest('password') %>
+
+archer: 
+  name: Sterling archer
+  email: archer@gmail.com
+  password_digest: <%= User.digest('password') %>
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+  password_digest: <%= User.digest('password') %>
+<% end %>
 
