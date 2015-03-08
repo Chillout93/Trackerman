@@ -15,15 +15,15 @@
     <header class="navbar navbar-fixed-top navbar-inverse">
       <div class="container">
         <div id="logo">Trackerman</div>
-        <nav>
-          <div class="ajust-height">
-          <ul class="nav navbar-nav pull-right">
-            <li>
+        <% if logged_in? %>
+          <nav>
+            <div class="ajust-height">
+            <ul class="nav navbar-nav pull-right">
+              <li>
                 <%= link_to users_path do %>
                   <i class="glyphicon glyphicon-calendar" title="Calendar"></i>
                 <% end %>
-            </li>
-            <% if logged_in? %>
+              </li>
               <li>
                 <%= link_to users_path do %>
                   <i class="glyphicon glyphicon-play" title="Shows"></i>
@@ -42,25 +42,21 @@
                   </li>
                 </ul>
               </li>
-            <% else %>
-              <li><%= link_to "Log In", login_path %></li>
-            <% end %>
-          </ul>
-          </div>
-
-          <div class="col-sm-3 col-md-3 pull-right">
-          <%= form_tag("/search", :method => "get", class: "navbar-form") do %>
-        <!--<form class="navbar-form" role="search">-->
-        <div class="input-group">
-            <input type="text" class="form-control" placeholder="Search" name="query" id="query">
-            <div class="input-group-btn">
-                <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+            </ul>
             </div>
-        </div>
-        <!--</form>-->
+
+            <div class="col-sm-3 col-md-3 pull-right">
+              <%= form_tag("/search", :method => "get", class: "navbar-form") do %>
+                <div class="input-group">
+                  <input type="text" class="form-control" placeholder="Search" name="query" id="query">
+                  <div class="input-group-btn">
+                    <button class="btn btn-default" type="submit"><i class="glyphicon glyphicon-search"></i></button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </nav>
         <% end %>
-        </div>
-        </nav>
       </div>
     </header>
     <div class="container">
