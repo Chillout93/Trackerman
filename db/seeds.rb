@@ -23,3 +23,22 @@ User.create!(name: "Nick Spicer",
                activated: true,
                activated_at: Time.zone.now) 
 end
+
+
+50.times do |n|
+  headers = { :accept => 'application/json' }
+  response = JSON.parse(RestClient.get "http://api.themoviedb.org/3/tv/#{n+1}?api_key=624db803deeb9f8d71bb99dfdbfbd026", headers)
+
+  TvShow.create!(name: response["name"],
+                 created_by: response["created_by"][0].nil? ? nil : response["created_by"][0]["name"],
+                 seasons: response["number_of_seasons"],
+                 episodes: response["number_of_episodes"],
+                 first_air_date: response["first_air_date"],
+                 last_air_date: response["last_air_date"],
+                 overview: response["overview"],
+                 poster_path: response["poster_path"].nil? ? nil : "https://image.tmdb.org/t/p/w185#{response["poster_path"]}",
+                 status: response["status"],
+                 rating: response["vote_average"],
+                 votes: response["vote_count"])
+end
+

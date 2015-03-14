@@ -4,11 +4,6 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   include SessionsHelper
 
-  require 'themoviedb'
-  before_filter :set_config
-  Tmdb::Api.key("624db803deeb9f8d71bb99dfdbfbd026")
-  
-  def set_config
-    @configuration = Tmdb::Configuration.new
-  end
+ 
 end
+

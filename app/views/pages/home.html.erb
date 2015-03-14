@@ -1,7 +1,9 @@
 <div class="center jumbotron">
   <p>Welcome to Trackerman!</p>
   <div class="row">
+    <% if not logged_in? %>
       <%= link_to "Sign Up Here", signup_path, class:"btn btn-lg btn-primary" %>
       <%= link_to "Log In", login_path, class:"btn btn-lg btn-primary" %>
+    <% end %>
   </div>
 </div>

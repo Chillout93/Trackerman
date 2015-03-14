@@ -11,7 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150205181848) do
+ActiveRecord::Schema.define(version: 20150313225225) do
+
+  create_table "tracked_shows", id: false, force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "tv_show_relationships", force: true do |t|
+    t.integer  "tv_show_id",                 null: false
+    t.integer  "user_id",                    null: false
+    t.boolean  "tracked",    default: false
+    t.boolean  "watched",    default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+  end
+
+  create_table "tv_shows", force: true do |t|
+    t.string   "name"
+    t.string   "created_by"
+    t.integer  "seasons"
+    t.integer  "episodes"
+    t.date     "first_air_date"
+    t.date     "last_air_date"
+    t.text     "overview"
+    t.string   "poster_path"
+    t.string   "status"
+    t.float    "rating"
+    t.integer  "votes"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
@@ -29,5 +59,10 @@ ActiveRecord::Schema.define(version: 20150205181848) do
   end
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
+
+  create_table "users_tracked_shows_joins", id: false, force: true do |t|
+    t.integer "user_id",         null: false
+    t.integer "tracked_show_id", null: false
+  end
 
 end

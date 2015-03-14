@@ -5,6 +5,9 @@ class User < ActiveRecord::Base
   before_create :create_activation_digest
   attr_accessor :remember_token, :activation_token, :reset_token
 
+  has_many :tv_show_relationships
+  has_many :tv_shows, :through => :tv_show_relationships
+
   validates :name, presence: true, length: { maximum: 50 }
   validates :email, presence: true, uniqueness: { case_sensitive: false }, length: { maximum: 200 }, format: { with: VALID_EMAIL_REGEX }
   validates :password, length: { minimum: 6 }

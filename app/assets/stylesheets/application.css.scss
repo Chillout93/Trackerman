@@ -89,6 +89,10 @@ h1, h2, h3, h4, h5, h6 {
   line-height: 1;
 }
 
+.session_button:visited { 
+  color:#FFF; 
+}
+
 h1 {
   font-size: 3em;
   letter-spacing: -2px;
@@ -103,6 +107,11 @@ h2 {
   text-align: center;
   font-weight: normal;
   color: #777;
+}
+
+h3 {
+  display: inline-block;
+  padding-right: 10px;
 }
 
 p {
@@ -120,6 +129,9 @@ p {
   @include box_sizing;
 }
 
+.btn-watch {
+  margin-bottom: 10px;
+}
 
 input, textarea, select, .uneditable-input {
   border: 1px solid #222;
