@@ -1,5 +1,4 @@
 <p id="notice"><%= notice %></p>
-
 <h1><%= @tv_shows.count %> TV Shows Found</h1>
 
 <table class="table">
@@ -9,8 +8,11 @@
         <td width="200"><%= image_tag(tv_show.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.poster_path, size: "150x200") %></td>
         <td>
           <h3><%= link_to tv_show.name, tv_show %></h3>
-          <%= link_to 'Track', tracked_shows_path(tv_show), :method => :post, :id => tv_show, class: "btn btn-primary btn-watch" %>
-          <%= link_to 'Tracking', track_show_path, :method => :post, class: "btn btn-success btn-watch" %>
+          <% if not tv_show.tracked?(current_user) %>
+            <%= link_to 'Track', tracked_shows_path(:tv_show => tv_show), :method => :post, class: "btn btn-primary btn-watch" %>
+          <% else %>
+            <%= link_to 'Tracking', tracked_shows_path(:tv_show => tv_show), :method => :post, class: "btn btn-success btn-watch" %>
+          <% end %>
           <br />
 
           <strong>Created By:</strong> <%= tv_show.created_by %><br />
@@ -20,7 +22,6 @@
           <!--<div><%= link_to 'Edit', edit_tv_show_path(tv_show), class: "btn btn-primary" %>
           <%= link_to 'Destroy', tv_show, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></div>-->
         </td>
-        <td></td>
         <td></td>
       </tr>
     <% end %>

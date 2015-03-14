@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+<h1>Tracking Shows</h1>
+
+<table class="table">
+  <tbody>
+    <% @tv_shows.each do |tv_show| %>
+    <% if tv_show.tracked?(current_user) %>
+      <tr>
+        <td width="200"><%= image_tag(tv_show.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.poster_path, size: "150x200") %></td>
+        <td>
+          <h3><%= link_to tv_show.name, tv_show %></h3>
+          <%= link_to 'Tracking', tracked_shows_path(:tv_show => tv_show), :method => :post, class: "btn btn-success btn-watch" %>
+          <br />
+
+          <strong>Created By:</strong> <%= tv_show.created_by %><br />
+          <strong>Seasons:</strong> <%= tv_show.seasons %>  <strong>Episodes:</strong> <%= tv_show.episodes %><br />
+          <strong>Status:</strong> <%= tv_show.status %><br />
+          <strong>Rating:</strong> <%= tv_show.rating %>  <strong>Votes:</strong> <%= tv_show.votes %><br />
+          <!--<div><%= link_to 'Edit', edit_tv_show_path(tv_show), class: "btn btn-primary" %>
+          <%= link_to 'Destroy', tv_show, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></div>-->
+        </td>
+        <td></td>
+      </tr>
+    <% end %>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
