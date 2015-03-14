@@ -1,0 +1,59 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @tv_show.name %>
+</p>
+
+<p>
+  <strong>Created by:</strong>
+  <%= @tv_show.created_by %>
+</p>
+
+<p>
+  <strong>Season:</strong>
+  <%= @tv_show.seasons %>
+</p>
+
+<p>
+  <strong>Episodes:</strong>
+  <%= @tv_show.episodes %>
+</p>
+
+<p>
+  <strong>First air date:</strong>
+  <%= @tv_show.first_air_date %>
+</p>
+
+<p>
+  <strong>Last air date:</strong>
+  <%= @tv_show.last_air_date %>
+</p>
+
+<p>
+  <strong>Overview:</strong>
+  <%= @tv_show.overview %>
+</p>
+
+<p>
+  <strong>Poster path:</strong>
+  <%= @tv_show.poster_path %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @tv_show.status %>
+</p>
+
+<p>
+  <strong>Rating:</strong>
+  <%= @tv_show.rating %>
+</p>
+
+<p>
+  <strong>Votes:</strong>
+  <%= @tv_show.votes %>
+</p>
+
+<%= link_to 'Edit', edit_tv_show_path(@tv_show) %> |
+<%= link_to 'Back', tv_shows_path %>
