@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  episode_number: 1
+  name: MyString
+  air_date: 2015-03-15
+  overview: MyText
+  still_path: MyString
+  vote_average: 1.5
+  vote_count: 1
+  season_id: 
+
+two:
+  episode_number: 1
+  name: MyString
+  air_date: 2015-03-15
+  overview: MyText
+  still_path: MyString
+  vote_average: 1.5
+  vote_count: 1
+  season_id: 

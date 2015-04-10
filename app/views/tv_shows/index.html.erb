@@ -16,13 +16,22 @@
           <br />
 
           <strong>Created By:</strong> <%= tv_show.created_by %><br />
-          <strong>Seasons:</strong> <%= tv_show.seasons %>  <strong>Episodes:</strong> <%= tv_show.episodes %><br />
+          <strong>Seasons:</strong> <%= tv_show.no_of_seasons %>  <strong>Episodes:</strong> <%= tv_show.no_of_episodes %><br />
           <strong>Status:</strong> <%= tv_show.status %><br />
           <strong>Rating:</strong> <%= tv_show.rating %>  <strong>Votes:</strong> <%= tv_show.votes %><br />
-          <!--<div><%= link_to 'Edit', edit_tv_show_path(tv_show), class: "btn btn-primary" %>
-          <%= link_to 'Destroy', tv_show, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></div>-->
+
+          <% if current_user.admin? %>
+            <%= link_to 'Edit', edit_tv_show_path(tv_show) %> |
+            <%= link_to 'Destroy', tv_show, method: :delete, data: { confirm: 'Are you sure?' } %>
+          <% end %>
         </td>
-        <td></td>
+        <td class="vert-align">
+          <% if not tv_show.watched?(current_user) %>
+            <%= link_to 'Watch', watched_shows_path(:tv_show => tv_show), :method => :post, class: "btn btn-primary btn-watch" %>
+          <% else %>
+            <%= link_to 'Watching', watched_shows_path(:tv_show => tv_show), :method => :post, class: "btn btn-success btn-watch" %>
+          <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>

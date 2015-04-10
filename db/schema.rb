@@ -11,7 +11,49 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150313225225) do
+ActiveRecord::Schema.define(version: 20150317162320) do
+
+  create_table "episode_relationships", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "episode_id"
+  end
+
+  create_table "episodes", force: true do |t|
+    t.integer  "episode_number"
+    t.string   "name"
+    t.date     "air_date"
+    t.text     "overview"
+    t.string   "still_path"
+    t.float    "vote_average"
+    t.integer  "vote_count"
+    t.integer  "season_id"
+    t.datetime "created_at",     null: false
+    t.datetime "updated_at",     null: false
+  end
+
+  add_index "episodes", ["season_id"], name: "index_episodes_on_season_id"
+
+  create_table "season_relationships", force: true do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "user_id"
+    t.integer  "season_id"
+  end
+
+  create_table "seasons", force: true do |t|
+    t.integer  "season_number"
+    t.string   "name"
+    t.date     "air_date"
+    t.text     "overview"
+    t.string   "poster_path"
+    t.integer  "tv_show_id"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
+
+  add_index "seasons", ["tv_show_id"], name: "index_seasons_on_tv_show_id"
 
   create_table "tracked_shows", id: false, force: true do |t|
     t.datetime "created_at", null: false
@@ -30,8 +72,8 @@ ActiveRecord::Schema.define(version: 20150313225225) do
   create_table "tv_shows", force: true do |t|
     t.string   "name"
     t.string   "created_by"
-    t.integer  "seasons"
-    t.integer  "episodes"
+    t.integer  "no_of_seasons"
+    t.integer  "no_of_episodes"
     t.date     "first_air_date"
     t.date     "last_air_date"
     t.text     "overview"

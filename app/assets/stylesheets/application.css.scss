@@ -53,6 +53,24 @@
   padding-top: 10px;
 }
 
+@media (min-width: 768px){
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1  {
+    width: 100%;
+    *width: 100%;
+  }
+}
+
+@media (min-width: 992px) {
+  .seven-cols .col-md-1,
+  .seven-cols .col-sm-1,
+  .seven-cols .col-lg-1 {
+    width: 14.285714285714285714285714285714%;
+    *width: 14.285714285714285714285714285714%;
+  }
+}
+
 html {
   overflow-y: scroll;
 }
@@ -131,6 +149,37 @@ p {
 
 .btn-watch {
   margin-bottom: 10px;
+}
+
+.table tbody > tr > td.vert-align{
+    vertical-align: middle;
+} 
+
+.panel {
+  background-color: #3d3d3d;
+}
+
+.panel-default > .panel-heading {
+  color: white;
+  background-color: #222;
+  border-color: #222;
+}
+
+.list-group-item {
+  background-color: #222;
+  border-color: #3D3D3D #222;
+}
+
+.list-group-item:last-child {
+  border-color: #222 !important; 
+} 
+
+.panel {
+  background-color: #222;
+}
+
+.panel-group .panel {
+  border-color: #222;
 }
 
 input, textarea, select, .uneditable-input {

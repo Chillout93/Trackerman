@@ -13,13 +13,39 @@
           <br />
 
           <strong>Created By:</strong> <%= tv_show.created_by %><br />
-          <strong>Seasons:</strong> <%= tv_show.seasons %>  <strong>Episodes:</strong> <%= tv_show.episodes %><br />
+          <strong>Seasons:</strong> <%= tv_show.no_of_seasons %>  <strong>Episodes:</strong> <%= tv_show.no_of_episodes %><br />
           <strong>Status:</strong> <%= tv_show.status %><br />
           <strong>Rating:</strong> <%= tv_show.rating %>  <strong>Votes:</strong> <%= tv_show.votes %><br />
-          <!--<div><%= link_to 'Edit', edit_tv_show_path(tv_show), class: "btn btn-primary" %>
-          <%= link_to 'Destroy', tv_show, class: "btn btn-danger", method: :delete, data: { confirm: 'Are you sure?' } %></div>-->
+          <br />
+          
+          <% @latest_episode = tv_show.latest_episode(current_user) %>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="heading<%= tv_show.id %>">
+              <h4 class="panel-title">
+                <a class="collapsed" data-toggle="collapse" data-parent="#accordion" href="#collapse<%= tv_show.id %>" aria-expanded="false" aria-controls="collapse<%= tv_show.id %>">
+                  <div class="row">
+                    <div class="col-xs-10 col-md-10"><%= @latest_episode.name %></div> 
+                    <div class="col-xs-2 col-md-2">
+                    <% if not @latest_episode.watched?(current_user) %>
+                      <%= link_to 'Watch', watched_episodes_path(:episode => @latest_episode), :method => :post, class: "btn btn-primary" %>
+                    <% else %>
+                      <%= link_to 'Watched', watched_episode_path(current_user, @latest_episode), :method => :post, class: "btn btn-success" %>
+                    <% end %>
+                    </div>  
+                  </div>
+                </a>
+              </h4>
+            </div>
+            <div id="collapse<%= tv_show.id %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading<%= tv_show.id %>">
+              <div class="panel-body">
+                <div class="row">
+                   <div class="col-xs-3 col-md-3"> <%= image_tag(@latest_episode.still_path.nil? ? "http://www.motorolasolutions.com/web/Business/Products/Accessories/_Images/ImageNotAvailable/_StaticFiles/ImageNotAvailable_LG.jpg" : @latest_episode.still_path, size: "200x125") %></div>
+                   <div class="col-xs-8 col-md-8"><%= @latest_episode.overview %></div>   
+                </div>
+              </div>
+            </div>
+          </div>
         </td>
-        <td></td>
       </tr>
     <% end %>
     <% end %>

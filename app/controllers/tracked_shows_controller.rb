@@ -10,5 +10,8 @@ class TrackedShowsController < ApplicationController
 
   def index
     @tv_shows = current_user.tv_shows
+    @episodes = current_user.episodes
   end
 end
+
+

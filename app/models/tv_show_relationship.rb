@@ -7,6 +7,6 @@ class TvShowRelationship < ActiveRecord::Base
   end
 
   def toggle_watch_show
-    update_attribute(:watched, true)
+    update_attribute(:watched, !self.watched)
   end
 end

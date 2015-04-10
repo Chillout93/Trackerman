@@ -1,59 +1,100 @@
-<p id="notice"><%= notice %></p>
+<table class="table">
+  <tr>
+    <td width="200">
+      <%= image_tag(@tv_show.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : @tv_show.poster_path, size: "150x200") %>
+    </td>
+    <td>
+      <h1>
+        <%= @tv_show.name %>
+        <% if not @tv_show.tracked?(current_user) %>
+          <%= link_to 'Track', tracked_shows_path(:tv_show => @tv_show), :method => :post, class: "btn btn-primary btn-watch" %>
+        <% else %>
+          <%= link_to 'Tracking', tracked_shows_path(:tv_show => @tv_show), :method => :post, class: "btn btn-success btn-watch" %>
+        <% end %>
+      </h1>
+      <br />
+      <strong>Created By:</strong> <%= @tv_show.created_by %><br />
+      <strong>Seasons:</strong> <%= @tv_show.no_of_seasons %>  <strong>Episodes:</strong> <%= @tv_show.no_of_episodes %><br />
+      <strong>Status:</strong> <%= @tv_show.status %><br />
+      <strong>Rating:</strong> <%= @tv_show.rating %>  <strong>Votes:</strong> <%= @tv_show.votes %><br />
+    </td>
+    <td class="vert-align">
+    <% if not @tv_show.watched?(current_user) %>
+      <%= link_to 'Watch', watched_shows_path(:tv_show => @tv_show), :method => :post, class: "btn btn-primary btn-watch" %>
+    <% else %>
+      <%= link_to 'Watched', watched_shows_path(:tv_show => @tv_show), :method => :post, class: "btn btn-success btn-watch" %>
+    <% end %>
+    </td>
+  </tr>
+</table>
+<br />
+<h1>Overview</h1>
+<p><%= @tv_show.overview %></p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @tv_show.name %>
-</p>
+<% if current_user.admin? %>
+  <%= link_to 'Edit', edit_tv_show_path(@tv_show) %> |
+  <%= link_to 'Destroy', @tv_show, method: :delete, data: { confirm: 'Are you sure?' } %>
+<% end %>
 
-<p>
-  <strong>Created by:</strong>
-  <%= @tv_show.created_by %>
-</p>
+<br />
+<h1>Seasons</h1>
 
-<p>
-  <strong>Season:</strong>
-  <%= @tv_show.seasons %>
-</p>
+<div class="panel-group" id="seasonAccordion" role="tablist" aria-multiselectable="true">
+  <% @tv_show.seasons.reverse.each do |season| %>
+  <div class="panel panel-default">
+    <div class="panel-heading" role="tab" id="seasonHeading<%= season.season_number %>">
+      <h4 class="panel-title">
+        <a class="collapsed" data-toggle="collapse" data-parent="#seasonAccordion" href="#seasonCollapse<%= season.season_number %>" aria-expanded="false" aria-controls="seasonCollapse<%= season.season_number %>">
+          <div class="row">
+            <div class="col-xs-8 col-md-11"><%= season.name %></div> 
+            <div class="col-xs-1 col-md-1">
+              <% if not season.watched?(current_user) %>
+                <%= link_to 'Watch', watched_seasons_path(:season => season), :method => :post, class: "btn btn-primary" %>
+              <% else %>
+                <%= link_to 'Watched', watched_season_path(season: season), method: :delete, class: "btn btn-success" %>
+              <% end %>
+            </div>  
+          </div>
+        </a>
+      </h4>
+    </div>
+    <div id="seasonCollapse<%= season.season_number %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="seasonHeading<%= season.season_number %>">
+      <div class="panel-body">
+        <div class="panel-group" id="episodeAccordion<%= season.season_number %>" role="tablist" aria-multiselectable="true">
+          <% season.episodes.each do |episode| %>
+          <div class="panel panel-default">
+            <div class="panel-heading" role="tab" id="episodeHeading<%= season.season_number %><%= episode.episode_number %>">
+            <h4 class="panel-title">
+              <a class="collapsed" data-toggle="collapse" data-parent="#episodeAccordion<%= season.season_number %>" href="#episodeCollapse<%= season.season_number %><%= episode.episode_number %>" aria-expanded="false" aria-controls="episodeCollapse<%= season.season_number %><%= episode.episode_number %>">
+              <div class="row">
+                <div class="col-xs-8 col-md-11"><%= episode.name %></div> 
+                <div class="col-xs-1 col-md-1">
+                <% if not episode.watched?(current_user) %>
+                  <%= link_to 'Watch', watched_episodes_path(:episode => episode), :method => :post, class: "btn btn-primary" %>
+                <% else %>
+                  <%= link_to 'Watched', watched_episode_path(:episode => episode), :method => :post, class: "btn btn-success" %>
+                <% end %>
+                </div>  
+              </div>
+              </a>
+            </h4>
+           </div>
+           <div id="episodeCollapse<%= season.season_number %><%= episode.episode_number %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="episodeHeading<%= season.season_number %><%= episode.episode_number %>">
+             <div class="panel-body">
+               <div class="row">
+                 <div class="col-xs-3 col-md-3"> <%= image_tag(episode.still_path.nil? ? "http://www.motorolasolutions.com/web/Business/Products/Accessories/_Images/ImageNotAvailable/_StaticFiles/ImageNotAvailable_LG.jpg" : episode.still_path, size: "200x125") %></div>
+                 <div class="col-xs-8 col-md-8"><%= episode.overview %></div>   
+               </div>
+             </div>
+           </div>
+          </div>
+          <% end %>
+        </div>
+        </div>
+    </div>
+  </div>
+  <% end %>
+</div>
 
-<p>
-  <strong>Episodes:</strong>
-  <%= @tv_show.episodes %>
-</p>
 
-<p>
-  <strong>First air date:</strong>
-  <%= @tv_show.first_air_date %>
-</p>
 
-<p>
-  <strong>Last air date:</strong>
-  <%= @tv_show.last_air_date %>
-</p>
-
-<p>
-  <strong>Overview:</strong>
-  <%= @tv_show.overview %>
-</p>
-
-<p>
-  <strong>Poster path:</strong>
-  <%= @tv_show.poster_path %>
-</p>
-
-<p>
-  <strong>Status:</strong>
-  <%= @tv_show.status %>
-</p>
-
-<p>
-  <strong>Rating:</strong>
-  <%= @tv_show.rating %>
-</p>
-
-<p>
-  <strong>Votes:</strong>
-  <%= @tv_show.votes %>
-</p>
-
-<%= link_to 'Edit', edit_tv_show_path(@tv_show) %> |
-<%= link_to 'Back', tv_shows_path %>
