@@ -4,6 +4,7 @@
       <h3>Monday</h3>
       <% if @monday %>
       <% @monday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -13,6 +14,7 @@
       <h3>Tuesday</h3>
       <% if @tuesday %>
       <% @tuesday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -22,6 +24,7 @@
       <h3>Wednesday</h3>
       <% if @wednesday %>
       <% @wednesday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -31,6 +34,7 @@
       <h3>Thursday</h3>
       <% if @thursday %>
       <% @thursday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -40,6 +44,7 @@
       <h3>Friday</h3>
       <% if @friday %>
       <% @friday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -49,6 +54,7 @@
       <h3>Saturday</h3>
       <% if @saturday %>
       <% @saturday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>
@@ -58,6 +64,7 @@
       <h3>Sunday</h3>
       <% if @sunday %>
       <% @sunday.each do |tv_show| %>
+        <br/>
         <div>[<%= tv_show.second %>x<%= tv_show.third %>] <%= tv_show.fourth %></div>
         <p><%= link_to image_tag(tv_show.first.poster_path.nil? ? "https://cdn.amctheatres.com/Media/Default/Images/noposter.jpg" : tv_show.first.poster_path, size: "75x100"), tv_show.first %></p>
       <% end %>

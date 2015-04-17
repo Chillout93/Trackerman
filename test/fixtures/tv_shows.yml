@@ -3,8 +3,8 @@
 one:
   name: MyString
   created_by: MyString
-  season: 1
-  episodes: 1
+  no_of_seasons: 1
+  no_of_episodes: 1
   first_air_date: 2015-03-09
   last_air_date: 2015-03-09
   overview: MyText
@@ -16,8 +16,8 @@ one:
 two:
   name: MyString
   created_by: MyString
-  season: 1
-  episodes: 1
+  no_of_seasons: 1
+  no_of_episodes: 1
   first_air_date: 2015-03-09
   last_air_date: 2015-03-09
   overview: MyText

@@ -58,14 +58,17 @@
         </a>
       </h4>
     </div>
-    <div id="seasonCollapse<%= season.season_number %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="seasonHeading<%= season.season_number %>">
+    <div id="seasonCollapse<%= season.season_number %>" class="panel-collapse collapse" role="tabpanel" 
+         aria-labelledby="seasonHeading<%= season.season_number %>">
       <div class="panel-body">
         <div class="panel-group" id="episodeAccordion<%= season.season_number %>" role="tablist" aria-multiselectable="true">
           <% season.episodes.each do |episode| %>
           <div class="panel panel-default">
             <div class="panel-heading" role="tab" id="episodeHeading<%= season.season_number %><%= episode.episode_number %>">
             <h4 class="panel-title">
-              <a class="collapsed" data-toggle="collapse" data-parent="#episodeAccordion<%= season.season_number %>" href="#episodeCollapse<%= season.season_number %><%= episode.episode_number %>" aria-expanded="false" aria-controls="episodeCollapse<%= season.season_number %><%= episode.episode_number %>">
+              <a class="collapsed" data-toggle="collapse" data-parent="#episodeAccordion<%= season.season_number %>" 
+                 href="#episodeCollapse<%= season.season_number %><%= episode.episode_number %>" aria-expanded="false" 
+                 aria-controls="episodeCollapse<%= season.season_number %><%= episode.episode_number %>">
               <div class="row">
                 <div class="col-xs-8 col-md-11"><%= episode.name %></div> 
                 <div class="col-xs-1 col-md-1">
@@ -79,10 +82,12 @@
               </a>
             </h4>
            </div>
-           <div id="episodeCollapse<%= season.season_number %><%= episode.episode_number %>" class="panel-collapse collapse" role="tabpanel" aria-labelledby="episodeHeading<%= season.season_number %><%= episode.episode_number %>">
+           <div id="episodeCollapse<%= season.season_number %><%= episode.episode_number %>" class="panel-collapse collapse" role="tabpanel" 
+                aria-labelledby="episodeHeading<%= season.season_number %><%= episode.episode_number %>">
              <div class="panel-body">
                <div class="row">
-                 <div class="col-xs-3 col-md-3"> <%= image_tag(episode.still_path.nil? ? "http://www.motorolasolutions.com/web/Business/Products/Accessories/_Images/ImageNotAvailable/_StaticFiles/ImageNotAvailable_LG.jpg" : episode.still_path, size: "200x125") %></div>
+                 <div class="col-xs-3 col-md-3"> 
+                   <%= image_tag(episode.still_path.nil? ? "http://www.motorolasolutions.com/web/Business/Products/Accessories/_Images/ImageNotAvailable/_StaticFiles/ImageNotAvailable_LG.jpg" : episode.still_path, size: "200x125") %></div>
                  <div class="col-xs-8 col-md-8"><%= episode.overview %></div>   
                </div>
              </div>
